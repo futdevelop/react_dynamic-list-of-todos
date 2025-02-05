@@ -36,6 +36,9 @@ function get<T>(url: string, status?: string, query?: string): Promise<T> {
       }
 
       return data as T;
+    })
+    .catch(() => {
+      throw new Error('Something went wrong...');
     });
 }
 

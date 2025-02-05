@@ -12,7 +12,7 @@ import { Todo } from './types/Todo';
 
 export const App: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [userId, setUserId] = useState<number>();
   const [todo, setTodo] = useState<Todo>();
@@ -24,16 +24,15 @@ export const App: React.FC = () => {
   };
 
   const fetchTodos = (selectStatus?: string, searchQuery?: string) => {
+    setLoading(true);
+
     getTodos(selectStatus, searchQuery)
       .then(receivedTodos => setTodos(receivedTodos))
+      .catch(() => {throw new Error('Something went wrong...')})
       .finally(() => setLoading(false));
   };
 
-  useEffect(() => {
-    fetchTodos(status, query);
-  }, [query]);
-
-  useEffect(() => fetchTodos(status, query), [status]);
+  useEffect(() => fetchTodos(status, query), [status, query]);
 
   const close = () => setOpenModal(false);
 

@@ -1,6 +1,6 @@
 type Props = {
   handleSelectStatus: (e: string) => void;
-  fetchTodos: () => void;
+  fetchTodos: (status?: string, query?: string) => void;
   setQuery: (query: string) => void;
   query: string;
 };

@@ -6,8 +6,8 @@ import { Todo } from '../../types/Todo';
 
 type Props = {
   closeModal: () => void;
-  userId: number | undefined;
-  todo: Todo | undefined;
+  userId?: number;
+  todo?: Todo ;
 };
 
 export const TodoModal: React.FC<Props> = ({ closeModal, userId, todo }) => {
