@@ -7,7 +7,7 @@ import { Todo } from '../../types/Todo';
 type Props = {
   closeModal: () => void;
   userId: number | undefined;
-  todo: Todo | undefined
+  todo: Todo | undefined;
 };
 
 export const TodoModal: React.FC<Props> = ({ closeModal, userId, todo }) => {
@@ -15,10 +15,11 @@ export const TodoModal: React.FC<Props> = ({ closeModal, userId, todo }) => {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    userId &&
+    if (userId) {
       getUser(userId)
-        .then(user => setUser(user))
+        .then(receivedUser => setUser(receivedUser))
         .finally(() => setLoading(false));
+    }
   }, [userId]);
 
   return (

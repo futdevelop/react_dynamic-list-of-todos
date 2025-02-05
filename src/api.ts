@@ -32,7 +32,7 @@ function get<T>(url: string, status?: string, query?: string): Promise<T> {
           filteredData = filteredData.filter(todo => todo.completed);
         }
 
-        return filteredData as T; 
+        return filteredData as T;
       }
 
       return data as T;

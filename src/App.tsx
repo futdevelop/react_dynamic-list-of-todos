@@ -19,13 +19,13 @@ export const App: React.FC = () => {
   const [status, setStatus] = useState('all');
   const [query, setQuery] = useState('');
 
-  const handleSelectStatus = (status: string = 'all') => {
-    setStatus(status);
+  const handleSelectStatus = (selectStatus: string = 'all') => {
+    setStatus(selectStatus);
   };
 
-  const fetchTodos = (status?: string, query?: string) => {
-    getTodos(status, query)
-      .then(todos => setTodos(todos))
+  const fetchTodos = (selectStatus?: string, searchQuery?: string) => {
+    getTodos(selectStatus, searchQuery)
+      .then(receivedTodos => setTodos(receivedTodos))
       .finally(() => setLoading(false));
   };
 
@@ -37,9 +37,9 @@ export const App: React.FC = () => {
 
   const close = () => setOpenModal(false);
 
-  const open = (todo: Todo, userId: number) => {
-    setUserId(userId);
-    setTodo(todo);
+  const open = (openedTodo: Todo, activeUserId: number) => {
+    setUserId(activeUserId);
+    setTodo(openedTodo);
     setOpenModal(true);
   };
 
